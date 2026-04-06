@@ -1,17 +1,17 @@
 import json
+import time
 import pandas as pd
 
-# 
-with open("data/raw/api_return.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
 
+with open("data/raw/spotify-API.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
 
 def coleta_album(data_json): # Coleta dados do album
     data_album = {
         "id_album": data_json["id"],
         "tipo_album": data_json["album_type"],
         "total_faixas": data_json["total_tracks"],
-        "nome_album": data_json["name"],
+        "nome": data_json["name"],
         "data_lancamento": data_json["release_date"],
         "popularidade": data_json["popularity"],
     }
@@ -19,6 +19,9 @@ def coleta_album(data_json): # Coleta dados do album
     df = pd.DataFrame([data_album]) # Transformando o 'dict único' em DF
     df.to_csv(f"data/staging/albums/album-{data_json['id']}.csv", index=False) # Pegando o DF e gerando um arquivo CSV
 
+    print('Coletando dados dos albuns... Aguarde...')
+    time.sleep(2)
+    
     return 'Dados coletados com sucesso!'
 
 
@@ -32,7 +35,7 @@ def coleta_artista(data_json):  # Coleta dados dos Artistas do Album
             data_artista = {
                 "id_artista": artista_album["id"],
                 "nome": artista_album["name"],
-                "type": artista_album["type"]
+                "tipo": artista_album["type"]
             }
             lista_artistas.append(data_artista)
             artistas_vistos.add(artista_album["id"])
@@ -44,7 +47,7 @@ def coleta_artista(data_json):  # Coleta dados dos Artistas do Album
                 data_artista = {
                     "id_artista": artista_faixa["id"],
                     "nome": artista_faixa["name"],
-                    "type": artista_faixa["type"]
+                    "tipo": artista_faixa["type"]
                 }
                 lista_artistas.append(data_artista)
                 artistas_vistos.add(artista_faixa["id"])
@@ -52,6 +55,10 @@ def coleta_artista(data_json):  # Coleta dados dos Artistas do Album
     df = pd.DataFrame(lista_artistas)
     df.to_csv(f"data/staging/artists/artistas_album-{data_json['id']}.csv", index=False)
 
+
+    print('Coletando dados dos artistas... Aguarde...')
+    time.sleep(2)
+    
     return 'Dados coletados com sucesso!'
 
 
@@ -71,6 +78,9 @@ def coleta_faixa(data_json): # Coleta dados das Músicas do Album
     df = pd.DataFrame(faixas) # Transformando a 'lista de dict' em DF
     df.to_csv(f"data/staging/tracks/faixas_album-{data_json['id']}.csv", index=False) # Pegando o DF e transformando em arquivo CSV
 
+    print('Coletando dados das faixas... Aguarde...')
+    time.sleep(2)
+    
     return 'Dados coletados com sucesso!'
 
 
@@ -88,16 +98,14 @@ def coleta_faixa_artista(data_json):
             })
     
     df = pd.DataFrame(lista_faixa_artista)
-    df.to_csv(f"data/staging/tracks/faixa_artistas_album-{data_json['id']}.csv", index=False)
+    df.to_csv(f"data/staging/tracks-artists/faixa_artistas_album-{data_json['id']}.csv", index=False)
+
+    print('Coletando dados das faixas que tem colabs... Aguarde...')
+    time.sleep(2)
 
     return 'Dados coletados com sucesso!'
 
 
-for album in data["albums"]:
-    print(coleta_album(album))
-    print(coleta_artista(album))
-    print(coleta_faixa(album))
-    print(coleta_faixa_artista(album)) 
 
 
 

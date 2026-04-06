@@ -47,7 +47,7 @@ def extract_dados_API(access_token):
 
     # Parâmetros, IDs dos Albuns que vamos coletar
     params = {
-    "ids": "43k99CXeU2JUO21G1F4WCP,1aqg30bNvLSWgShZgX4oop,0KJc9ksnoJJsdpQxV3z5i1,2Y9IRtehByVkegoD7TcLfi,3kjHLu1pL7tdY88GFwEkl6,31hcgCSu4mlA82syOFItur,2DQ6hHlAGj6DiT0Y068bnK,5DV2liMHX5AqtiLqy3Qu1b,0whPMf7IlDh0fRufgqQ37h,65ddZj6nMC8ypPvzoTxVli,7dLOvaC7Qr3cJUt0vo88Os,5yNfC7mKzPRlvSqR3J2Jfq,3ZJMXbIYhx5CG7DsrRVxwP,6RsZXnolUCMjZAcdVlaD0l,6QWmIGUIKxpMphCOQb5s6b,4IL9DJvDvCJUQJwwOdZfYD,3SpBlxme9WbeQdI9kx7KAV,5lxavLVQXbp52tsabsKxhd,7GoZNNb7Yl74fpk8Z6I2cv,2EDW8OhiHdB2UtE6PCAxZD"
+    "ids": "5NbxMZtxb56xrqXY4ks4CB, 6qp8a3Tx1FRR70uoa6xcWR, 5YS25rZNw4skcN20FhhfUJ, 3J8RIRU9w0bEvwHiyoykri,4b8qEsqVND9sgoSFhPUELJ,7hLXr1YD7DGY8c1A5zWPmo,0whPMf7IlDh0fRufgqQ37h,5yNfC7mKzPRlvSqR3J2Jfq,3kjHLu1pL7tdY88GFwEkl6,4czdORdCWP9umpbhFXK2fW,7GoZNNb7Yl74fpk8Z6I2cv,1aqg30bNvLSWgShZgX4oop,75dG7VTeDqIntV3RIhH9hv,7b6D3zdYbbxSjfYJ7pKge9,083NpzlPOa5Q2mWOEkEaGw,4nj991HPkSVfoyNYqI5Sgu,1OEj74ygMvQHFyypp3COpw"
     }
 
     # Token de Acesso
@@ -70,8 +70,7 @@ def extract_dados_API(access_token):
         return 'Erro ao coletar dados'
 
 
-access_token = extract_access_token()
-print(extract_dados_API(access_token))
+
 
 
 
